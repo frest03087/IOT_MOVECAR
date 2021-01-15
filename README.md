@@ -16,6 +16,71 @@
 * 四個直流減速電機
 * 一套雙層四驅自走車底盤(包含四顆輪胎)
 * 筆電
-## 4.
-## .影片
+## 4.線路設計
+![GITHUB](https://github.com/frest03087/IOT_MOVECAR/blob/main/FourWheelCar.png "FourWheelCar.png")
+## 5.程式設計
+main.py
+```python
+import RPi.GPIO as GPIO
+import sys
+ 
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
+GPIO.setup(31, GPIO.OUT)
+GPIO.setup(33, GPIO.OUT)
+GPIO.setup(35, GPIO.OUT)
+GPIO.setup(37, GPIO.OUT)
+ 
+if len(sys.argv)<=1:
+    cmd = 'stop'
+else:
+    cmd = sys.argv[1]
+ 
+print(cmd)
+ 
+if cmd == 'F':
+    GPIO.output(31, GPIO.LOW)
+    GPIO.output(33, GPIO.HIGH)
+    GPIO.output(35, GPIO.HIGH)
+    GPIO.output(37, GPIO.LOW)
+elif cmd == 'B':
+    GPIO.output(31, GPIO.HIGH)
+    GPIO.output(33, GPIO.LOW)
+    GPIO.output(35, GPIO.LOW)
+    GPIO.output(37, GPIO.HIGH)
+elif cmd == 'L':
+    GPIO.output(31, GPIO.LOW)
+    GPIO.output(33, GPIO.LOW)
+    GPIO.output(35, GPIO.HIGH)
+    GPIO.output(37, GPIO.LOW)
+elif cmd == 'R':
+    GPIO.output(31, GPIO.LOW)
+    GPIO.output(33, GPIO.HIGH)
+    GPIO.output(35, GPIO.LOW)
+    GPIO.output(37, GPIO.LOW)
+elif cmd == 'BL':
+    GPIO.output(31, GPIO.LOW)
+    GPIO.output(33, GPIO.LOW)
+    GPIO.output(35, GPIO.LOW)
+    GPIO.output(37, GPIO.HIGH)
+elif cmd == 'BR':
+    GPIO.output(31, GPIO.HIGH)
+    GPIO.output(33, GPIO.LOW)
+    GPIO.output(35, GPIO.LOW)
+    GPIO.output(37, GPIO.LOW)
+elif cmd == 'S':
+    GPIO.output(31, GPIO.LOW)
+    GPIO.output(33, GPIO.LOW)
+    GPIO.output(35, GPIO.LOW)
+    GPIO.output(37, GPIO.LOW)
+else:
+    GPIO.output(31, GPIO.LOW)
+    GPIO.output(33, GPIO.LOW)
+    GPIO.output(35, GPIO.LOW)
+    GPIO.output(37, GPIO.LOW)
+```
+## 6.影片
 * https://www.youtube.com/watch?v=1L7Kd24zTDM
+## 7.參考資料
+* https://github.com/ponponmusic/IOT-Project-_-FourWheelCar-ImageRecognize
+* http://hophd.com/raspberry-pi-remote-car-program/
